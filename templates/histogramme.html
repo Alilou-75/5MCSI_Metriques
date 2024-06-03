@@ -9,13 +9,13 @@
     <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-         dataTable.addColumn('string', 'Date');
-    dataTable.addColumn('number', 'Valeur');
-    data.results.forEach(entry => {
-      var date = new Date(entry.Jour * 1000);
-      dataTable.addRow([date.toLocaleDateString(), entry.temp]);
+     function drawChart() {
+     var data = google.visualization.arrayToDataTable([
+     dataTable.addColumn('string', 'Date');
+     dataTable.addColumn('number', 'Valeur');
+     data.results.forEach(entry => {
+       var date = new Date(entry.Jour * 1000);
+       dataTable.addRow([date.toLocaleDateString(), entry.temp]);
     });
         var options = {
           title: 'Évolution des températures de la ville de Tawarano',
