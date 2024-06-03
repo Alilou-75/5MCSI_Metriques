@@ -7,35 +7,35 @@
   <body>
     <div id="chart_div"></div>
     <script>
-      google.charts.load("current", {packages:["corechart"] });
+      google.charts.load('current', { packages: ['corechart'] });
       google.charts.setOnLoadCallback(drawBackgroundColor);
-      function drawBackgroundColor() {
-     function drawChart() {
-      var dataTable = new.visualization.arrayToDataTable([
-     dataTable.addColumn('string', 'Date');
-     dataTable.addColumn('number', 'Valeur');
-     data.results.forEach(entry => {
-       var date = new Date(entry.Jour * 1000);
-       dataTable.addRow([date.toLocaleDateString(), entry.temp]);
+     function drawBackgroundColor() {
+    function drawChart(data) {
+    // Convertir les données récupérées en un tableau utilisable par Google Charts
+    var dataTable = new google.visualization.DataTable();
+    dataTable.addColumn('string', 'Date');
+    dataTable.addColumn('number', 'Valeur');
+    data.results.forEach(entry => {
+      var date = new Date(entry.Jour * 1000);
+      dataTable.addRow([date.toLocaleDateString(), entry.temp]);
     });
-        var options = {
-          title: 'Évolution des températures de la ville de Tawarano',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
-
-        var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-      // Récupération de données depuis notre API /tawarano/
-      fetch('/tawarano/')
-       .then(response => response.json())
-       .then(data => {
-         drawChart(data);
+    // Configurer les options du graphique en ligne
+    var options = {
+      title: 'Évolution des températures de la ville de Tawarano',
+      curveType: 'function',
+      legend: { position: 'bottom' }
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    chart.draw(dataTable, options);
+  }
+  // Récupération de données depuis notre API /tawarano/
+  fetch('/tawarano/')
+    .then(response => response.json())
+    .then(data => {
+      drawChart(data);
     })
 }
     </script>
   </body>
 </html>
-
 
