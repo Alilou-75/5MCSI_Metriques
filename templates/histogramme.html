@@ -12,7 +12,7 @@
      function drawBackgroundColor() {
     function drawChart(data) {
     // Convertir les données récupérées en un tableau utilisable par Google Charts
-    var dataTable = new google.visualization.arrayToDataTable();
+    var dataTable = new google.visualization.DataTable();
     dataTable.addColumn('string', 'Date');
     dataTable.addColumn('number', 'Valeur');
     data.results.forEach(entry => {
