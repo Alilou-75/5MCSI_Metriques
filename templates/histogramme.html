@@ -5,12 +5,12 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   </head>
   <body>
-    <div id="chart_div" style="width: 900px; height: 500px;"></div>
-    <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
+    <div id="chart_div"></div>
+    <script>
+      google.charts.load("current", {packages:["corechart"] });
       google.charts.setOnLoadCallback(drawChart);
      function drawChart() {
-     var data = google.visualization.arrayToDataTable([
+      var dataTable = new.visualization.arrayToDataTable([
      dataTable.addColumn('string', 'Date');
      dataTable.addColumn('number', 'Valeur');
      data.results.forEach(entry => {
