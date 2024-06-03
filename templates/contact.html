@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+     .contacte {
+    font-family: Avenir, sans-serif;
+   }
+fieldset{
+    background:linear-gradient(to bottom right, rgb(192, 192, 191), rgb(51, 35, 26), rgb(28, 58, 141));
+ border-radius: 10px;
+}
+legend{
+ font-weight: bold;
+ 
+}
+.champ{
+ margin-bottom: 10px;
+}
+textarea{
+ width: 80%;
+ height: 100px;
+ border-radius: 10px;
+}
+input {
+    border-radius: 7px;
+
+}
+   #envoie {
+    border: 0;
+    line-height: 2.1;
+    font-size: 0.8rem;
+    text-align: center;
+    margin-right: 5px;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 10px;
+    background-color: rgba(25, 25, 255, 1);
+    background-image: linear-gradient(to top left,rgba(0, 0, 0, 0.2),
+   rgba(0, 0, 0, 0.2) 30%, rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6), inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+    width: 100px;
+}
+
+#envoie:hover {
+ background-color: rgb(159, 158, 160);
+}
+
+#envoie:active {
+ box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6),
+   inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+   }
+  </style>
+  <title>Contact</title>
+</head>
+<body>
+        <div id="corp-form"> <h3><b>Contacte</b></h3>
+        <form method="post" action="form.php">
+                <fieldset>
+                  <legend><i>Merci de me laisser un message :</i></legend>
+                  <div class="champ">
+                    <label for="nom"><i>Nom :</i></label>
+                    <input type="text" id="nom" name="nom">
+                  </div>
+                  <div class="champ">
+                    <label for="prenom"><i>Prénom :</i></label>
+                    <input type="text" id="prenom" name="prenom">
+                  </div>
+                
+    <div class="champ">
+                    <textarea name="exp" placeholder="Merci de saisir votre message"></textarea>
+                   </div>
+               
+    <input id="envoie" type="submit" value="Envoyer">
+                  
+         </fieldset>
+    </form>
+        </div>
+</body>
+</html>
