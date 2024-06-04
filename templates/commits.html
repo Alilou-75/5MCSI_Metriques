@@ -12,6 +12,17 @@
     </div>
 
     <script>
+        const octokit = new Octokit({
+  auth: 'YOUR-TOKEN'
+})
+
+       await octokit.request('GET /repos/Alilou-75/5MCSI_Metriques/issues', {
+  owner: 'Alilou-75',
+  repo: '5MCSI_Metriques',
+  headers: {
+    'X-GitHub-Api-Version': '2022-11-28'
+  }
+})
         async function fetchData() {
             const response = await fetch('/data');
             const data = await response.json();
