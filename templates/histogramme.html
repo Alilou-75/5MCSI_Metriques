@@ -17,7 +17,7 @@
     dataTable.addColumn('number', 'Valeur');
     data.results.forEach(entry => {
       var date = new Date(entry.Jour * 1000);
-      dataTable.addRow([date.toLocaleDateString(), entry.temp]);
+      dataTable.addRow([entry.temp, date.toLocaleDateString()]);
     });
     // Configurer les options du graphique en ligne
     var options = {
