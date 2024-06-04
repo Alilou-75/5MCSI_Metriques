@@ -24,7 +24,8 @@
     var options = {
       title: 'Évolution des températures de la ville de Tawarano',
       legend: { position: 'bottom' },
-       bar: {groupWidth: "70%"},
+      height: 400,
+      bar: {groupWidth: "70%"},
     };
     var chart = new google.visualization.ColumnChart(document.getElementById("chart_div"));
       chart.draw(dataTable, options);
