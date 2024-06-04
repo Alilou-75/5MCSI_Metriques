@@ -38,6 +38,18 @@ def monhistogramme():
     return render_template("histogramme.html")
   
 # ======================= Créer une route pour les Commits =====================================
+@app.route('/metriques/')
+def ali-commit():
+    response = urlopen('https://api.github.com/repos/Alilou-75/5MCSI_Metriques/commits')
+    raw_content = response.read()
+    json_content = json.loads(raw_content.decode('utf-8'))
+    results = []
+    for list_element in json_content.get('list', []):
+        dt_value = list_element.get('dt')
+        commits = list_element.get('main', {}).get('commit') 
+        results.append({'Jour': dt_value, 'commit': commits})
+    return jsonify(results=results)
+
 @app.route("/commits/")
 def mescommits():
     return render_template("commits.html")
