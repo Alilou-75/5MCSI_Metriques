@@ -44,6 +44,7 @@ def monhistogramme():
 GITHUB_TOKEN = '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'
 GITHUB_API_URL = 'https://api.github.com'
 
+@app.route("/mes_commits/")
 def get_commits_data(owner, repo):
     headers = {
         'Authorization': f'token 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 '
