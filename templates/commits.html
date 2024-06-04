@@ -12,17 +12,6 @@
     </div>
 
     <script>
-        const octokit = new Octokit({
-  auth: 'YOUR-TOKEN'
-})
-
-       await octokit.request('GET /repos/Alilou-75/5MCSI_Metriques/issues', {
-  owner: 'Alilou-75',
-  repo: '5MCSI_Metriques',
-  headers: {
-    'X-GitHub-Api-Version': '2022-11-28'
-  }
-})
         async function fetchData() {
             const response = await fetch('/data');
             const data = await response.json();
@@ -33,32 +22,36 @@
             const data = await fetchData();
             const ctx = document.getElementById('commitsChart').getContext('2d');
             
-            const labels = data.map(commit => commit.time);
-            const counts = data.map(commit => commit.count);
+            const labels = data.map(entry => entry.time);
+            const counts = data.map(entry => entry.count);
             
             new Chart(ctx, {
-                type: 'line',
+                type: 'bar',
                 data: {
                     labels: labels,
                     datasets: [{
                         label: 'Commits per Minute',
                         data: counts,
-                        borderColor: 'rgba(75, 192, 192, 1)',
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        fill: true,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
                     }]
                 },
                 options: {
                     responsive: true,
                     scales: {
                         x: {
-                            type: 'time',
-                            time: {
-                                unit: 'minute'
+                            title: {
+                                display: true,
+                                text: 'Time (minute)'
                             }
                         },
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Commits'
+                            }
                         }
                     }
                 }
@@ -69,3 +62,4 @@
     </script>
 </body>
 </html>
+
