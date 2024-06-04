@@ -14,7 +14,7 @@
     // Convertir les données récupérées en un tableau utilisable par Google Charts
     var dataTable = new google.visualization.DataTable();
     dataTable.addColumn('string', 'Date');
-    data.addColumn('number', 'températures');
+    dataTable.addColumn('number', 'Valeur');
     data.results.forEach(entry => {
       var date = new Date(entry.Jour * 1000);
       dataTable.addRow([date.toLocaleDateString(), entry.temp]);
@@ -23,13 +23,6 @@
     var options = {
       title: 'Évolution des températures de la ville de Tawarano',
       legend: { position: 'bottom' }
-       hAxis: {
-          title: 'les jours',
-          format: 'Date',
-               }
-        vAxis: {
-          title: 'Températues (de 8-14)'
-        }
     };
     var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
     chart.draw(dataTable, options);
