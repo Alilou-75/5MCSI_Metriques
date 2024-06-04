@@ -13,8 +13,8 @@
     function drawChart(data) {
     // Convertir les données récupérées en un tableau utilisable par Google Charts
     var dataTable = new google.visualization.DataTable();
-    dataTable.addColumn('string', 'Date');
     dataTable.addColumn('number', 'Valeur');
+    dataTable.addColumn('string', 'Date');
     data.results.forEach(entry => {
       var date = new Date(entry.Jour * 1000);
       dataTable.addRow([entry.temp, date.toLocaleDateString()]);
