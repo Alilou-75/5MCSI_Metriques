@@ -5,7 +5,7 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   </head>
   <body>
-    <div id="chart_div"  style="width: 80%; height: 500px;"></div>
+    <div id="chart_div"></div>
     <script>
       google.charts.load('current', { packages: ['corechart'] });
       google.charts.setOnLoadCallback(drawBackgroundColor);
@@ -23,8 +23,8 @@
     // Configurer les options du graphique en ligne
     var options = {
       title: 'Évolution des températures de la ville de Tawarano',
-      legend: { position: 'bottom' }
-      bar: {groupWidth: "70%"},
+      legend: { position: 'bottom' },
+       bar: {groupWidth: "70%"},
     };
     var chart = new google.visualization.ColumnChart(document.getElementById("chart_div"));
       chart.draw(dataTable, options);
