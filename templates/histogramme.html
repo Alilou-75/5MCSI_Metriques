@@ -14,7 +14,7 @@
     // Convertir les données récupérées en un tableau utilisable par Google Charts
     var dataTable = new google.visualization.DataTable();
     dataTable.addColumn('string', 'Date');
-    data.addColumn('temp', 'températures');
+    data.addColumn('number', 'températures');
     data.results.forEach(entry => {
       var date = new Date(entry.Jour * 1000);
       dataTable.addRow([date.toLocaleDateString(), entry.temp]);
