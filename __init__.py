@@ -70,7 +70,7 @@ def get_commits_data():
         'per_page': 100
     }
 
-    response = requests.get(commits_url, headers=headers, params=params)
+    response = request.get(commits_url, headers=headers, params=params)
     response.raise_for_status()
     commits = response.json()
 
