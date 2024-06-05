@@ -3,7 +3,6 @@ from flask import render_template
 from flask import json
 from datetime import datetime, timedelta
 from urllib.request import urlopen
-from flask import requests
 import sqlite3
 
                                                                                                                                        
