@@ -1,7 +1,7 @@
 from flask import Flask, render_template_string, render_template, jsonify
 from flask import render_template
 from flask import json
-from datetime import datetime, timedelta
+from datetime import datetime
 from urllib.request import urlopen
 import sqlite3
 
@@ -46,22 +46,29 @@ def ali_commit():
     json_content = json.loads(raw_content.decode('utf-8'))
     results = []
     for list_element in json_content.get('list', []):
-        dt_value = list_element.get('dt')
         commit_time = commit['commit']['author']['date']
-        results.append({'Jour': dt_value, 'commit': commit_time})
-    return jsonify(results=results)
+        commit_minute = datetime.strptime(commit_time, '%Y-%m-%dT%H:%M:%SZ').strftime('%H:%M')
+        if commit_minute in commits_per_minute:
+            commits_per_minute[commit_minute] += 1
+        else:
+            commits_per_minute[commit_minute] = 1
+
+    sorted_commits = sorted(commits_per_minute.items())
+
+    return [{'time': time, 'count': count} for time, count in sorted_commits]
 # ======================= une autre route pour les Commits =====================================
 
 GITHUB_TOKEN = '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'
 GITHUB_API_URL = 'https://api.github.com'
 
 @app.route("/mes_commits/")
-def get_commits_data(owner, repo):
+def get_commits_data():
     headers = {
         'Authorization': f'token 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 '
     }
     commits_url = f'https://api.github.com/repos/Alilou-75/5MCSI_Metriques/commits'
     now = datetime.utcnow()
+    timedelta = 1
     since = now - timedelta(hours=1)  # Récupère les commits de la dernière heure
 
     params = {
@@ -97,11 +104,6 @@ def data():
     repo = '5MCSI_Metriques'   # Remplacez par le nom du repo
     commits = get_commits_data(owner, repo)
     return jsonify(commits)
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
-
 
 
 @app.route('/extract-minutes/<date_string>')
