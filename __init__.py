@@ -45,9 +45,8 @@ def ali_commit():
     raw_content = response.read()
     json_content = json.loads(raw_content.decode('utf-8'))
     results = []
-    for list_element in json_content.get('list', []):
-        dt_value = list_element.get('dt')
-        commit_time = commit['commit']['author']['date']
+    for list_element in json_content.get('commit', []):
+        commit_time = commit['author']['date']
         results.append({'Jour': dt_value, 'commit': commit_time})
     return jsonify(results=results)
 # ======================= une autre route pour les Commits =====================================
