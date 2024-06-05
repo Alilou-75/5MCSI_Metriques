@@ -40,7 +40,7 @@ def monhistogramme():
   
 # ======================= Créer une route pour les Commits =====================================
 @app.route('/metriques/')
-def ali-commit():
+def ali_commit():
     response = urlopen('https://api.github.com/repos/Alilou-75/5MCSI_Metriques/commits')
     raw_content = response.read()
     json_content = json.loads(raw_content.decode('utf-8'))
