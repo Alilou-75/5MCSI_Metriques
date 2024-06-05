@@ -45,7 +45,7 @@ def ali_commit():
     raw_content = response.read()
     json_content = json.loads(raw_content.decode('utf-8'))
     results = []
-    for commit in commits:
+    for data in data:
         commit_time = commit['commit']['author']['date']
         commit_minute = datetime.strptime(commit_time, '%Y-%m-%dT%H:%M:%SZ').strftime('%H:%M')
         if commit_minute in commits_per_minute:
@@ -56,13 +56,8 @@ def ali_commit():
     sorted_commits = sorted(commits_per_minute.items())
 
     return [{'time': time, 'count': count} for time, count in sorted_commits]
+# ======================= une autre route pour les Commits =====================================
 
-
-
-
-
-
-# Remplacez par votre token GitHub si nécessaire
 GITHUB_TOKEN = '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'
 GITHUB_API_URL = 'https://api.github.com'
 
