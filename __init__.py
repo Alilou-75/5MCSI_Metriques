@@ -3,7 +3,7 @@ from flask import render_template
 from flask import json
 from datetime import datetime, timedelta
 from urllib.request import urlopen
-from flask import request
+from flask import requests
 import sqlite3
 
                                                                                                                                        
@@ -70,7 +70,7 @@ def get_commits_data():
         'per_page': 100
     }
 
-    response = request.get(commits_url, headers=headers, params=params)
+    response = requests.get(commits_url, headers=headers, params=params)
     response.raise_for_status()
     commits = response.json()
 
