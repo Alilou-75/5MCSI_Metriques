@@ -7,7 +7,8 @@ import sqlite3
 
                                                                                                                                        
 app = Flask(__name__)
-# ======================= Créer une route pour les contacts ===================================
+
+# =========================== Créer une route pour les contacts ===================================
 @app.route("/contact/")
 def moncontact():
     return render_template("contact.html")
@@ -15,6 +16,7 @@ def moncontact():
 @app.route('/')
 def hello_world():
     return render_template('hello.html')
+  
   # ======================= Créer une route la meteo de la ville de tawarano  =====================
 @app.route('/tawarano/')
 def meteo():
@@ -28,17 +30,17 @@ def meteo():
         results.append({'Jour': dt_value, 'temp': temp_day_value})
     return jsonify(results=results)
   
-# ======================= Créer une route pour le Graphique ===================================
+# ============================ Créer une route pour le Graphique ===================================
 @app.route("/rapport/")
 def mongraphique():
     return render_template("graphique.html")
   
-# ======================= Créer une route pour l'histogramme ===================================
+# =========================== Créer une route pour l'histogramme ===================================
 @app.route("/histogramme/")
 def monhistogramme():
     return render_template("histogramme.html")
   
-# ======================= Créer une route pour les Commits =====================================
+# ============== Créer une route pour extraire l'activité du repository (Commits) ==================
 @app.route('/metriques/')
 def ali_commit():
     url = 'https://api.github.com/repos/Alilou-75/5MCSI_Metriques/commits'
@@ -46,62 +48,17 @@ def ali_commit():
     raw_content = response.read()
     json_content = json.loads(raw_content.decode('utf-8'))
     results = []
-
     for commit in json_content:
         commit_time = commit['commit']['author']['date']
         dt_value = datetime.strptime(commit_time, '%Y-%m-%dT%H:%M:%SZ').strftime('%Y-%m-%d %H:%M:%S')
         results.append({'Jour': dt_value, 'commit': commit_time})
 
     return jsonify(results=results)
-# ======================= une autre route pour les Commits =====================================
 
-GITHUB_TOKEN = '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'
-GITHUB_API_URL = 'https://api.github.com'
-
-@app.route("/mes_commits/")
-def get_commits_data():
-    headers = {
-        'Authorization': f'token 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 '
-    }
-    commits_url = f'https://api.github.com/repos/Alilou-75/5MCSI_Metriques/commits'
-    now = datetime.utcnow()
-    timedelta = 1
-    since = now - timedelta(hours=1)  # Récupère les commits de la dernière heure
-
-    params = {
-        'since': since.isoformat() + 'Z',
-        'per_page': 100
-    }
-
-    response = requests.get(commits_url, headers=headers, params=params)
-    response.raise_for_status()
-    commits = response.json()
-
-    commits_per_minute = {}
-
-    for commit in commits:
-        commit_time = commit['commit']['author']['date']
-        commit_minute = datetime.strptime(commit_time, '%Y-%m-%dT%H:%M:%SZ').strftime('%H:%M')
-        if commit_minute in commits_per_minute:
-            commits_per_minute[commit_minute] += 1
-        else:
-            commits_per_minute[commit_minute] = 1
-
-    sorted_commits = sorted(commits_per_minute.items())
-
-    return [{'time': time, 'count': count} for time, count in sorted_commits]
-
+# =================== Créer une route pour un Graphique des Commits par minutes =====================
 @app.route("/commits/")
 def mescommits():
     return render_template("commits.html")
-
-@app.route('/data')
-def data():
-    owner = 'Alilou-75'  # Remplacez par le propriétaire du repo
-    repo = '5MCSI_Metriques'   # Remplacez par le nom du repo
-    commits = get_commits_data(owner, repo)
-    return jsonify(commits)
-
 
 @app.route('/extract-minutes/<date_string>')
 def extract_minutes(date_string):
