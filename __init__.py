@@ -45,7 +45,7 @@ def ali_commit():
     raw_content = response.read()
     json_content = json.loads(raw_content.decode('utf-8'))
     results = []
-     for commit in commits:
+    for commit in commits:
         commit_time = commit['commit']['author']['date']
         commit_minute = datetime.strptime(commit_time, '%Y-%m-%dT%H:%M:%SZ').strftime('%H:%M')
         if commit_minute in commits_per_minute:
