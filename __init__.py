@@ -39,6 +39,28 @@ def monhistogramme():
     return render_template("histogramme.html")
   
 # ======================= Créer une route pour les Commits =====================================
+@app.route('/metriques/')
+def ali-commit():
+    response = urlopen('https://api.github.com/repos/Alilou-75/5MCSI_Metriques/commits')
+    raw_content = response.read()
+    json_content = json.loads(raw_content.decode('utf-8'))
+    results = []
+     for commit in commits:
+        commit_time = commit['commit']['author']['date']
+        commit_minute = datetime.strptime(commit_time, '%Y-%m-%dT%H:%M:%SZ').strftime('%H:%M')
+        if commit_minute in commits_per_minute:
+            commits_per_minute[commit_minute] += 1
+        else:
+            commits_per_minute[commit_minute] = 1
+
+    sorted_commits = sorted(commits_per_minute.items())
+
+    return [{'time': time, 'count': count} for time, count in sorted_commits]
+
+
+
+
+
 
 # Remplacez par votre token GitHub si nécessaire
 GITHUB_TOKEN = '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'
