@@ -46,16 +46,10 @@ def ali_commit():
     json_content = json.loads(raw_content.decode('utf-8'))
     results = []
     for list_element in json_content.get('list', []):
+        dt_value = list_element.get('dt')
         commit_time = commit['commit']['author']['date']
-        commit_minute = datetime.strptime(commit_time, '%Y-%m-%dT%H:%M:%SZ').strftime('%H:%M')
-        if commit_minute in commits_per_minute:
-            commits_per_minute[commit_minute] += 1
-        else:
-            commits_per_minute[commit_minute] = 1
-
-    sorted_commits = sorted(commits_per_minute.items())
-
-    return [{'time': time, 'count': count} for time, count in sorted_commits]
+        results.append({'Jour': dt_value, 'commit': commit_time})
+    return jsonify(results=results)
 # ======================= une autre route pour les Commits =====================================
 
 GITHUB_TOKEN = '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'
