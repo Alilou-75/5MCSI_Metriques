@@ -41,13 +41,17 @@ def monhistogramme():
 # ======================= Créer une route pour les Commits =====================================
 @app.route('/metriques/')
 def ali_commit():
-    response = urlopen('https://api.github.com/repos/Alilou-75/5MCSI_Metriques/commits')
+    url = 'https://api.github.com/repos/Alilou-75/5MCSI_Metriques/commits'
+    response = urlopen(url)
     raw_content = response.read()
     json_content = json.loads(raw_content.decode('utf-8'))
     results = []
-    for list_element in json_content.get('commit', []):
-        commit_time = commit['author']['date']
+
+    for commit in json_content:
+        commit_time = commit['commit']['author']['date']
+        dt_value = datetime.strptime(commit_time, '%Y-%m-%dT%H:%M:%SZ').strftime('%Y-%m-%d %H:%M:%S')
         results.append({'Jour': dt_value, 'commit': commit_time})
+
     return jsonify(results=results)
 # ======================= une autre route pour les Commits =====================================
 
