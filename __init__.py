@@ -51,6 +51,7 @@ def get_commits_data():
     }
     commits_url = f'https://api.github.com/repos/Alilou-75/5MCSI_Metriques/commits'
     now = datetime.utcnow()
+    timedelta = 1
     since = now - timedelta(hours=1)  # Récupère les commits de la dernière heure
 
     params = {
