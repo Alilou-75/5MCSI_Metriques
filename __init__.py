@@ -49,7 +49,7 @@ def get_commits_data(owner, repo):
     headers = {
         'Authorization': f'token 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 '
     }
-    commits_url = f'api.github.com/repos/Alilou-75/5MCSI_Metriques/commits'
+    commits_url = f'https://api.github.com/repos/Alilou-75/5MCSI_Metriques/commits'
     now = datetime.utcnow()
     since = now - timedelta(hours=1)  # Récupère les commits de la dernière heure
 
