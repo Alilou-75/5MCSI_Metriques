@@ -69,7 +69,7 @@ def ali_commit():
         chart_data.append([minute, count])
 
     return jsonify(results=chart_data)
-  @app.route('/extract-minutes/<date_string>')
+@app.route('/extract-minutes/<date_string>')
 def extract_minutes(date_string):
     try:
         date_object = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
