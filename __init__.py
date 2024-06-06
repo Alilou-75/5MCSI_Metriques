@@ -61,7 +61,7 @@ def ali_commit():
         if minute in commit_counts:
             commit_counts[minute] += 1
         else:
-            commit_counts[minute] = 1
+            commit_counts[minute] = 0
 
     # Convertir les données en une liste de listes pour Google Charts
     chart_data = [['Minute', 'Commits']]
@@ -83,11 +83,6 @@ def extract_minutes(date_string):
 def mescommits():
     return render_template("commits.html")
 
-#@app.route('/extract-minutes/<date_string>')
-#def extract_minutes(date_string):
- #       date_object = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
-  #      minutes = date_object.minute
-   #     return jsonify({'minutes': minutes})
 
   
 if __name__ == "__main__":
