@@ -61,7 +61,7 @@ def ali_commit():
         if minute in commit_counts:
             commit_counts[minute] += 1
         else:
-            commit_counts[minute] = 0
+            commit_counts[minute] = 1
 
     # Convertir les données en une liste de listes pour Google Charts
     chart_data = [['Minute', 'Commits']]
