@@ -1,41 +1,33 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
-    <title>Metrique</title>
+    <title>Commit Activity Graph</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        fetch('/metriques/')
+          .then(response => response.json())
+          .then(data => {
+            var chartData = google.visualization.arrayToDataTable(data.results);
+
+            var options = {
+              title: 'Commits per Minute',
+              curveType: 'function',
+              legend: { position: 'bottom' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart.draw(chartData, options);
+          });
+      }
+    </script>
   </head>
   <body>
-    <div id="chart_div"></div>
-    <script>
-      google.charts.load('current', { packages: ['corechart'] });
-      google.charts.setOnLoadCallback(drawBackgroundColor);
-     function drawBackgroundColor() {
-    function drawChart(data) {
-    // Convertir les données récupérées en un tableau utilisable par Google Charts
-    var dataTable = new google.visualization.DataTable();
-    dataTable.addColumn('string', 'Date');
-    dataTable.addColumn('number', 'commit');
-    data.results.forEach(entry => {
-      var date = new Date(entry.Jour * 1000);
-      dataTable.addRow([date.toLocaleDateString(), entry.temp]);
-    });
-    // Configurer les options du graphique en ligne
-    var options = {
-      title: 'Nombre de Commits par minute pour ce projet',
-      curveType: 'function',
-      legend: { position: 'bottom' }
-    };
-    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-    chart.draw(dataTable, options);
-  }
-  // Récupération de données depuis notre API /tawarano/
-  fetch('/metriques/')
-    .then(response => response.json())
-    .then(data => {
-      drawChart(data);
-    })
-}
-    </script>
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
   </body>
 </html>
 
