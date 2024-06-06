@@ -6,12 +6,13 @@
     <style>
         body {
             background:linear-gradient(to bottom right, rgb(192, 192, 191), rgb(207, 124, 76), rgb(55, 89, 182));
+            padding: 20;
         }
         h1 {
             text-align: center;
             color: blue;
         }
-        h2 {
+        h2, nav h3, h3 {
             text-align: center;
         }
         pre {
@@ -19,13 +20,47 @@
             border-radius: 10px;
             background-color: black;
             color: white;
+            margin-left: 20px;
+            margin-right: 20px;
         }
+        p,nav {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        .button {
+        background-color: #1c27c9;
+        border-radius: 10px;
+        border: none;
+        color: white;
+        padding: 15px 34px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin: 5px 10px;
+        cursor: pointer;
+      }
+      nav {
+        border: 2px solid ;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #5992e9;
+      }
+    
     </style>
     <title>Evaluation</title>
 </head>
 <body>
     <h1>Bienvenue sur votre projet Métriques</h1>
     <h2>Ceci est le projet de : Ali Sellam</h2>
+    <nav>
+        <h3>Résultats du projet</h3>
+        <a href="https://ali-etudiant.alwaysdata.net/contact/" class="button" target="_blank">Contact</a>
+        <a href="https://ali-etudiant.alwaysdata.net/tawarano/" class="button" target="_blank">Tawarano</a>
+        <a href="https://ali-etudiant.alwaysdata.net/rapport/" class="button" target="_blank">Rapport</a>
+        <a href="https://ali-etudiant.alwaysdata.net/histogramme/" class="button" target="_blank">Histogramme</a>
+        <a href="https://ali-etudiant.alwaysdata.net/commits/" class="button" target="_blank">Commits</a>
+    </nav>
     <p>Si vous avez mis en ligne votre solution et si cette page d'accueil s'affiche dans votre navigateur alors <b>vous avez déjà gagné 4 points</b> sur votre note d'évaluation.</p>
     <p>Notions acquises lors de cette étape : Vous avez lors cette première étape apris à créer votre hébergement en ligne sur Alwaydata, installer une application, Forker un projet GitHUB et créer des Secrets qui seront utilisés lors de vos Commits pour mettre à jour votre site en ligne</p>
     <hr/>
@@ -35,14 +70,14 @@
     <hr/>
     <h3>Exercice 2 : Création d'une nouvelle route (2 points)</h3>
     <p>Objectif : Savoir créer des routes (c'est à dire la création d'une nouvelle API)</p>
-    L'exercice consiste à créer une nouvelle route accèssible depuis le chemin "/contact/" de votre site et qui affichera "Ma page de contact" dans le navigateur de l'internaute.
-    L'internaute saisira l'adresse suivante dans son navigateur : <b>https://{Votre URL}/contact/</b> et obtiendra donc le résultat "Ma page de contact". Vous allez pour cela, depuis GitHUB, <b>ajouter</b> le code suivant dans votre fichier <b></b>__init__.py</b> qui est à la racine de votre Repository précédemment créé :
+    <p>L'exercice consiste à créer une nouvelle route accèssible depuis le chemin "/contact/" de votre site et qui affichera "Ma page de contact" dans le navigateur de l'internaute.
+    L'internaute saisira l'adresse suivante dans son navigateur : <b>https://{Votre URL}/contact/</b> et obtiendra donc le résultat "Ma page de contact". Vous allez pour cela, depuis GitHUB, <b>ajouter</b> le code suivant dans votre fichier <b></b>__init__.py</b> qui est à la racine de votre Repository précédemment créé :</p>
     <pre><code><xmp>
     @app.route("/contact/")
     def MaPremiereAPI():
         return "<h2>Ma page de contact</h2>"
     </xmp></code></pre>
-    Remarque importante : Ce code est à ajouter après la ligne "app = Flask(__name__)" qui est le début de votre programme et avant le bloc "if __name__ == "__main__" à la fin du fichier.
+    <p>Remarque importante : Ce code est à ajouter après la ligne "app = Flask(__name__)" qui est le début de votre programme et avant le bloc "if __name__ == "__main__" à la fin du fichier.</p>
     <b>Attention l'indentation est très importante en Python.</b>
     </p>
     <p>Notion acquises lors de cet exercice : Vous avez appris lors de cet exercice à créer des API (c'est à dire des routes) dans une application Python. Vous pouvez créer autant d'API (de routes) que vous le souhaitez dans votre application Python.</p>
