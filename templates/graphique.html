@@ -26,7 +26,10 @@
       curveType: 'function',
       height: 500,
       legend: { position: 'bottom' },
-      animation: true
+      animation: {
+        duration: 1000,
+        easing: 'linear'
+      }
     };
     var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
     chart.draw(dataTable, options);
