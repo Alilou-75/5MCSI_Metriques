@@ -4,7 +4,6 @@ from flask import json
 from datetime import datetime
 from urllib.request import urlopen
 import sqlite3
-
                                                                                                                                        
 app = Flask(__name__)
 
@@ -62,6 +61,27 @@ def ali_commit():
             commit_counts[minute] += 1
         else:
             commit_counts[minute] = 1
+
+  # Déterminer l'intervalle de temps des commits
+    if results:
+        start_time = datetime.strptime(results[0], '%Y-%m-%d %H:%M')
+        end_time = datetime.strptime(results[-1], '%Y-%m-%d %H:%M')
+    else:
+        # Si aucune commit n'est présent, définir un intervalle par défaut
+        start_time = datetime.utcnow()
+        end_time = start_time
+
+    # Générer toutes les minutes possibles dans l'intervalle
+    all_minutes = []
+    current_time = start_time
+    while current_time <= end_time:
+        all_minutes.append(current_time.strftime('%Y-%m-%d %H:%M'))
+        current_time += timedelta(minutes=1)
+
+    # Initialiser toutes les minutes à 0 commits
+    for minute in all_minutes:
+        if minute not in commit_counts:
+            commit_counts[minute] = 0
 
     # Convertir les données en une liste de listes pour Google Charts
     chart_data = [['Minute', 'Commits']]
