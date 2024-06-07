@@ -29,6 +29,11 @@
       height: 400,  
       colors: ['#9575cd'],
       bar: {groupWidth: "70%"},
+      animation: {
+        startup: true,
+        duration: 1000,
+        easing: 'linear'
+      }
     };
     var chart = new google.visualization.ColumnChart(document.getElementById("chart_div"));
       chart.draw(dataTable, options);
