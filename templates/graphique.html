@@ -25,7 +25,8 @@
       subtitle: 'en degré celsius',
       curveType: 'function',
       height: 500,
-      legend: { position: 'bottom' }
+      legend: { position: 'bottom' },
+      animation: true
     };
     var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
     chart.draw(dataTable, options);
