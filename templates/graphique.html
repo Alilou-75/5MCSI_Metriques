@@ -21,10 +21,13 @@
     });
     // Configurer les options du graphique en ligne
     var options = {
-      title: 'Évolution des températures de la ville de Tawarano',
-      curveType: 'function',
-      height: '600px',
-      legend: { position: 'bottom' }
+       chart: {
+         title: 'Évolution des températures de la ville de Tawarano',
+         subtitle: 'en degré celsius'
+       },
+       curveType: 'function',
+       height: 500,
+       legend: { position: 'bottom' }
     };
     var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
     chart.draw(dataTable, options);
